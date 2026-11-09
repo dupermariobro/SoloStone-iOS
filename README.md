@@ -2,6 +2,14 @@
 
 # SoloStone
 
+> **iOS port fork:** The initial standalone iPhone/iPad practice client is in [`mobile/`](mobile/README.md).
+> It reuses the rules engine with a new responsive touch interface, offline matches and local saves.
+> This is an early implementation; the Apple build and device validation are still pending.
+> [Build workflow](https://github.com/dupermariobro/SoloStone-iOS/actions/workflows/mobile-ios.yml) ·
+> [Mobile scope and build instructions](mobile/README.md)
+>
+> The upstream Windows project's documentation continues below.
+
 > [!WARNING]
 > **Alpha 0.1.0.** SoloStone is in early playtesting, so bugs and blockers can happen. Feedback is very welcome:
 > if anything goes wrong, tell us on [Discord](https://discord.gg/e45QgKHmC2) or open an
