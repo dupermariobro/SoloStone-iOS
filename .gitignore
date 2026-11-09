@@ -18,3 +18,6 @@ __pycache__/
 *.pem
 *.pfx
 *.p12
+
+# Local SDK used for port validation
+.tools/

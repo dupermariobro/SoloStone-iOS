@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../engine/SabberStoneCore/SabberStoneCore.csproj" />
+    <EmbeddedResource Include="../../data/npc/decks-v1.json" LogicalName="decks.json" />
+    <EmbeddedResource Include="../../LICENSE" LogicalName="Legal.LICENSE" />
+    <EmbeddedResource Include="../../NOTICE" LogicalName="Legal.NOTICE" />
+    <EmbeddedResource Include="../NOTICE.md" LogicalName="Legal.MOBILE-NOTICE" />
+    <EmbeddedResource Include="../../LICENSES/*.txt" LogicalName="Legal.%(Filename)" />
+  </ItemGroup>
+</Project>

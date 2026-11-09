@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0-ios</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <SupportedOSPlatformVersion>16.0</SupportedOSPlatformVersion>
+    <ApplicationId>org.solostone.mobile</ApplicationId>
+    <ApplicationTitle>SoloStone</ApplicationTitle>
+    <ApplicationVersion>1</ApplicationVersion>
+    <ApplicationDisplayVersion>0.1.0</ApplicationDisplayVersion>
+    <!-- The engine discovers card handlers and snapshot fields using reflection. -->
+    <UseInterpreter>true</UseInterpreter>
+    <TrimMode>copy</TrimMode>
+    <CreatePackage>false</CreatePackage>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../SoloStone.Mobile.Core/SoloStone.Mobile.Core.csproj" />
+    <BundleResource Include="../Web/**" Link="Web/%(RecursiveDir)%(Filename)%(Extension)" />
+    <BundleResource Include="../../LICENSE" Link="Legal/LICENSE.txt" />
+    <BundleResource Include="../../NOTICE" Link="Legal/NOTICE.txt" />
+    <BundleResource Include="../../LICENSE-ADDITIONAL-PERMISSION.md" Link="Legal/ADDITIONAL-PERMISSION.txt" />
+    <BundleResource Include="../../LICENSES/**" Link="Legal/LICENSES/%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+</Project>

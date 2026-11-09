@@ -1,0 +1,44 @@
+name: Mobile iOS (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  simulator:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+      - name: Select compatible Xcode
+        run: sudo xcode-select --switch /Applications/Xcode_26.0.1.app/Contents/Developer
+      - name: Install iOS workload
+        run: dotnet workload install ios --skip-manifest-update
+      - name: Inspect Xcode
+        run: xcodebuild -version
+      - name: Test mobile engine adapter
+        run: dotnet run --project mobile/SoloStone.Mobile.Tests -p:GeneratePackageOnBuild=false
+      - name: Build simulator app
+        run: bash mobile/build-ios.sh simulator
+      - name: Capture phone and tablet launch screens
+        run: python3 mobile/capture-simulators.py
+      - name: Build unsigned device IPA
+        run: >-
+          dotnet publish mobile/SoloStone.iOS/SoloStone.iOS.csproj -c Release -r ios-arm64
+          -p:EnableCodeSigning=false -p:CodesignRequireProvisioningProfile=false
+          -p:BuildIpa=true -p:GeneratePackageOnBuild=false
+      - name: Package simulator app and corresponding source
+        run: |
+          mkdir -p mobile/out
+          app_path=$(find mobile/SoloStone.iOS/bin/Debug -maxdepth 4 -name '*.app' -type d | head -n 1)
+          test -n "$app_path"
+          ditto -c -k --keepParent "$app_path" mobile/out/SoloStone-Simulator.zip
+          ipa_path=$(find mobile/SoloStone.iOS/bin/Release -name '*.ipa' -type f | head -n 1)
+          test -n "$ipa_path"
+          cp "$ipa_path" mobile/out/SoloStone-Unsigned.ipa
+          tar --exclude=.git --exclude=.tools --exclude='*/bin' --exclude='*/obj' --exclude=./mobile/out -czf mobile/out/SoloStone-Mobile-Source.tar.gz .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SoloStone-iOS-and-Source
+          path: mobile/out/*

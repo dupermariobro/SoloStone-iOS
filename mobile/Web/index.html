@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="theme-color" content="#101f25">
+  <title>SoloStone</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main id="home" class="home">
+    <header class="brand"><span class="sigil" aria-hidden="true">✦</span><span>SOLOSTONE</span><span class="pill">OFFLINE · iOS PORT ALPHA</span></header>
+    <section class="welcome">
+      <p class="eyebrow">A SEAT AT YOUR OWN TABLE</p>
+      <h1>One more game.<br><em>Anytime. Anywhere.</em></h1>
+      <p class="intro">Your deck. A worthy opponent. No connection required.<br>Settle in for a little strategy.</p>
+      <div class="setup">
+        <label>Your deck<select id="player-deck" aria-label="Your deck"></select></label>
+        <label>Across the table<select id="opponent-deck" aria-label="Opponent deck"></select></label>
+        <button id="start" class="gold" disabled>Preparing the table…</button>
+        <button id="resume" hidden>Continue saved game</button>
+      </div>
+      <p class="hint">Built on SoloStone’s rules engine. New touch interface.<br>Tap any card to read it and choose a legal move.</p>
+    </section>
+    <aside class="table-art" aria-hidden="true"><div class="rune">✦</div><div class="art-card left">✧</div><div class="art-card right">✧</div><span>THE INN IS ALWAYS OPEN</span></aside>
+    <footer class="home-footer"><span>Single player · Local saves · No account</span><button id="about">About & licenses</button></footer>
+  </main>
+
+  <main id="game" class="game" hidden>
+    <header class="game-bar"><button id="menu" aria-label="Open game menu">☰</button><span class="wordmark">✦ SOLOSTONE</span><span id="turn" class="pill"></span><button id="all-moves">Legal moves</button></header>
+    <section class="arena" aria-label="Game table">
+      <div class="seat opponent"><button id="opponent-hero" class="hero"></button><span id="opponent-meta" class="seat-meta"></span><span class="seat-tag">OPPONENT</span></div>
+      <section class="lane enemy-lane" aria-label="Opponent board"><div id="enemy-board" class="board"></div></section>
+      <div class="divider"><span id="status" role="status" aria-live="polite"></span></div>
+      <section class="lane friendly-lane" aria-label="Your board"><div id="your-board" class="board"></div></section>
+      <div class="seat player"><button id="your-hero" class="hero"></button><span id="your-meta" class="seat-meta"></span><button id="power" class="power"></button></div>
+      <section id="hand" class="hand" aria-label="Your hand"></section>
+    </section>
+    <footer class="game-footer"><span id="mana"></span><button id="choices" class="gold" hidden>Choose cards</button><button id="end-turn" class="gold">End turn</button></footer>
+  </main>
+  <div id="notice" class="notice" role="alert" hidden></div>
+  <dialog id="sheet"><header><h2 id="sheet-title"></h2><button id="close-sheet" aria-label="Close">✕</button></header><div id="sheet-body"></div></dialog>
+</body>
+</html>
