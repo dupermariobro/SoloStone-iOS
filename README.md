@@ -4,7 +4,7 @@
 
 > **iOS port fork:** The initial standalone iPhone/iPad practice client is in [`mobile/`](mobile/README.md).
 > It reuses the rules engine with a new responsive touch interface, offline matches and local saves.
-> This is an early implementation; the Apple build and device validation are still pending.
+> Native simulator and ARM64 device builds pass. This is an early practice client; physical-device validation is pending.
 > [Build workflow](https://github.com/dupermariobro/SoloStone-iOS/actions/workflows/mobile-ios.yml) ·
 > [Mobile scope and build instructions](mobile/README.md)
 >

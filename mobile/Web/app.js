@@ -1,7 +1,7 @@
 'use strict';
 const $ = id => document.getElementById(id);
 let state = null, busy = false, hasSaved = false, nextId = 1, pending = new Map(), botTimer, noticeTimer;
-const plain = text => (text || '').replace(/<[^>]*>/g, '').replace(/\$|#/g, '');
+const plain = text => (text || '').replace(/<[^>]*>/g, '').replace(/\[x\]|[$#_]/g, '').replace(/,&/g, ', ');
 function notice(text) { $('notice').textContent = text; $('notice').hidden = false; clearTimeout(noticeTimer); noticeTimer = setTimeout(() => $('notice').hidden = true, 12000); }
 $('notice').onclick = () => $('notice').hidden = true;
 function button(text, action, className = '') { const b = document.createElement('button'); b.textContent = text; b.className = className; b.onclick = action; return b; }

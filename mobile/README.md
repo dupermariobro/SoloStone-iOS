@@ -22,6 +22,8 @@ audio and animations, progression, collection/deck editing, packs, shop, ranked 
 personalities/search are not implemented. Practice decks are unlocked; no rewards are awarded.
 The original upstream project's legally obtained-client requirement and notices remain in the root docs;
 this standalone implementation does not consume any client files.
+Some upstream card-text placeholders remain visible, and combat/status presentation is still basic.
+See [BUILD-STATUS.md](BUILD-STATUS.md) for the actual build and validation results.
 
 ## Validation performed on Windows
 
@@ -31,7 +33,8 @@ this standalone implementation does not consume any client files.
 - Native wrapper C# compiled against Microsoft's iOS 26.0.11017 reference assembly, zero warnings/errors.
   This checks API signatures only; it is **not** an iOS workload/Xcode build.
 - JavaScript syntax check passes.
-- Visual and simulator/device validation is outstanding: browser automation could not open the local preview.
+- Browser validation passed after moving the loopback preview outside the Windows sandbox: real mulligan,
+  card play, bot turn and portrait/landscape layout checks. Native device validation remains outstanding.
 
 The tests exercise the adapter, not every card interaction. Upstream includes a 20-card Thief Priest deck;
 it is preserved verbatim rather than padded with arbitrary cards.
@@ -52,7 +55,9 @@ if the build reports a version mismatch. Do not silently change the engine SDK p
 The manual GitHub Actions workflow at `.github/workflows/mobile-ios.yml` selects Xcode 26.0.1 on macOS 15,
 builds the simulator app and unsigned device IPA, captures first-launch screenshots on an iPhone and iPad
 simulator, and includes corresponding source. The unsigned IPA needs your own signing before installation.
-It has not been run yet; execution requires GitHub authorization and a fork with the workflow enabled.
+It has been run in this fork: native builds and artifact packaging passed; the simulator boot check timed out.
+The overall workflow is therefore marked failed even though its unsigned IPA and simulator app are available.
+See [the run](https://github.com/dupermariobro/SoloStone-iOS/actions/runs/42622414323) and [BUILD-STATUS.md](BUILD-STATUS.md).
 
 Find the `.app` under `mobile/SoloStone.iOS/bin/Debug/net10.0-ios/<simulator-rid>/`.
 Boot an iPhone or iPad simulator, then install and launch it:
