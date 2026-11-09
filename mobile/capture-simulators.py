@@ -23,12 +23,12 @@ for kind in ("iPhone", "iPad"):
     uid = device["udid"]
     print(f"Capturing {device['name']}", flush=True)
     if device["state"] != "Booted":
-        subprocess.run(["xcrun", "simctl", "boot", uid], check=True)
+        subprocess.run(["xcrun", "simctl", "boot", uid], check=True, timeout=90)
     try:
-        subprocess.run(["xcrun", "simctl", "bootstatus", uid, "-b"], check=True)
-        subprocess.run(["xcrun", "simctl", "install", uid, str(apps[0])], check=True)
-        subprocess.run(["xcrun", "simctl", "launch", uid, "org.solostone.mobile"], check=True)
+        subprocess.run(["xcrun", "simctl", "bootstatus", uid, "-b"], check=True, timeout=240)
+        subprocess.run(["xcrun", "simctl", "install", uid, str(apps[0])], check=True, timeout=90)
+        subprocess.run(["xcrun", "simctl", "launch", uid, "org.solostone.mobile"], check=True, timeout=60)
         time.sleep(5)
-        subprocess.run(["xcrun", "simctl", "io", uid, "screenshot", str(out / f"{kind}-launch.png")], check=True)
+        subprocess.run(["xcrun", "simctl", "io", uid, "screenshot", str(out / f"{kind}-launch.png")], check=True, timeout=60)
     finally:
-        subprocess.run(["xcrun", "simctl", "shutdown", uid], check=False)
+        subprocess.run(["xcrun", "simctl", "shutdown", uid], check=False, timeout=60)

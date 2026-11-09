@@ -21,8 +21,6 @@ jobs:
         run: dotnet run --project mobile/SoloStone.Mobile.Tests -p:GeneratePackageOnBuild=false
       - name: Build simulator app
         run: bash mobile/build-ios.sh simulator
-      - name: Capture phone and tablet launch screens
-        run: python3 mobile/capture-simulators.py
       - name: Build unsigned device IPA
         run: >-
           dotnet publish mobile/SoloStone.iOS/SoloStone.iOS.csproj -c Release -r ios-arm64
@@ -38,7 +36,11 @@ jobs:
           test -n "$ipa_path"
           cp "$ipa_path" mobile/out/SoloStone-Unsigned.ipa
           tar --exclude=.git --exclude=.tools --exclude='*/bin' --exclude='*/obj' --exclude=./mobile/out -czf mobile/out/SoloStone-Mobile-Source.tar.gz .
+      - name: Capture phone and tablet launch screens
+        timeout-minutes: 10
+        run: python3 mobile/capture-simulators.py
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: SoloStone-iOS-and-Source
           path: mobile/out/*
