@@ -2,9 +2,10 @@
 
 # SoloStone
 
-> **iOS port fork:** The initial standalone iPhone/iPad practice client is in [`mobile/`](mobile/README.md).
-> It reuses the rules engine with a new responsive touch interface, offline matches and local saves.
-> Native simulator and ARM64 device builds pass. This is an early practice client; physical-device validation is pending.
+> **Status correction:** This fork currently contains an **engine-only iOS experiment**, not a port of
+> SoloStone's existing Hearthstone client/plugin experience. The IPA in `mobile/` does not deliver the
+> original interface, collection, packs or progression. A faithful port has **not** been achieved.
+> See the [faithful iOS port assessment](docs/IOS-PORT-ASSESSMENT.md) for the actual target and blockers.
 > [Build workflow](https://github.com/dupermariobro/SoloStone-iOS/actions/workflows/mobile-ios.yml) ·
 > [Mobile scope and build instructions](mobile/README.md)
 >

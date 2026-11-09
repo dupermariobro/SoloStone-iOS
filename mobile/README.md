@@ -1,5 +1,9 @@
 # SoloStone standalone iOS port — initial implementation
 
+> **Correction:** This directory is an engine-only experiment. It is not a port of SoloStone's original
+> Hearthstone client/plugin experience and does not fulfill that target. See
+> [the faithful-port assessment](../docs/IOS-PORT-ASSESSMENT.md).
+
 This adds an iPhone/iPad app that runs SoloStone's existing engine locally, with a new touch interface.
 It does not load or patch the Hearthstone iOS client. Source is under `mobile/`; the upstream engine,
 card facts and NPC deck data are reused directly. The upstream Windows plugin remains untouched.
